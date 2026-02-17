@@ -11,7 +11,7 @@
 
 https://docs.gomplate.ca/installing/
 
-Probably npm is easiest, or just download the self contained binary.
+Probably npm is easiest, or just download the self contained binary, see in github action https://github.com/vkhobor/gomplate_test_compose/blob/main/.github/workflows/test-render-vault.yml
 
 ## How to Try
 
