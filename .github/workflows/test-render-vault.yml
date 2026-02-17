@@ -43,7 +43,7 @@ jobs:
           # Wait for vault to be ready
           sleep 5
           # Add test data to vault
-          vault kv put secret/app database_url="test://localhost" api_key="test-key"
+          vault kv put secret/app password='vault-password' api_key='vault-api-key' app_env='production'
 
       - name: Test render-vault.sh
         run: |
@@ -53,3 +53,11 @@ jobs:
       - name: Verify output file exists
         run: |
           test -f docker-compose-vault.out.yml
+
+      - name: Cat template file
+        run: |
+          cat ./template/docker-compose.template.yml
+
+      - name: Cat output file
+        run: |
+          cat docker-compose-vault.out.yml
