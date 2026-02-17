@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# AWS Authentication Setup - Choose one method:
+# LINKS
 # https://docs.gomplate.ca/datasources/#using-awssm-datasources
 # https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html
+
+# AWS Authentication Setup - Choose one method:
 
 # Method 1: Environment Variables
 export AWS_ACCESS_KEY_ID='your-access-key-id'
@@ -19,7 +21,7 @@ export AWS_REGION='us-east-1'
 # aws secretsmanager create-secret --name "app-config" --secret-string '{"password":"aws-password","api_key":"aws-api-key","app_env":"production"}'
 
 gomplate \
-  -d aws=aws+sm:///app-config?region=us-east-1 \
+  -d vault=aws+sm:///app-config?region=us-east-1 \
   -d config=./datasources/config.json \
   -f ./template/docker-compose.template.yml \
   -o docker-compose-aws.out.yml
