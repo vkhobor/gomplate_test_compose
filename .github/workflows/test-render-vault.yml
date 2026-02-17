@@ -44,6 +44,8 @@ jobs:
           sleep 5
           # Add test data to vault
           vault kv put secret/app password='vault-password' api_key='vault-api-key' app_env='production'
+          # Read back the data to verify
+          vault kv get secret/app
 
       - name: Test render-vault.sh
         run: |
