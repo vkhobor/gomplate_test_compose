@@ -7,6 +7,12 @@
 - `template/` - Gomplate template for docker-compose
 - `render-vault.sh` - Script to render template using Vault and config.json
 
+## Install gomplate
+
+https://docs.gomplate.ca/installing/
+
+Probably npm is easiest, or just download the self contained binary.
+
 ## How to Try
 
 1. Start Vault with preseeded secrets:
