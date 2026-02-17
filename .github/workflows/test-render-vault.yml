@@ -25,7 +25,7 @@ jobs:
 
       - name: Install gomplate
         run: |
-          curl -o /tmp/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.11.5/gomplate_linux-amd64
+          curl -o /tmp/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v5.0.0/gomplate_linux-amd64
           chmod +x /tmp/gomplate
           sudo mv /tmp/gomplate /usr/local/bin/gomplate
 
