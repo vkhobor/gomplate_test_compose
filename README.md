@@ -11,8 +11,7 @@
 
 https://docs.gomplate.ca/installing/
 
-Probably npm is easiest, or just download the self contained binary, see in github action https://github.com/vkhobor/gomplate_test_compose/blob/main/.github/workflows/test-render-vault.yml
-
+Probably npm is easiest, or just download the self contained binary, see in [github action ](https://github.com/vkhobor/gomplate_test_compose/blob/c40aba57d6821cfd19ba2f5bca44efc47c7f7950/.github/workflows/test-render-vault.yml#L26)
 ## How to Try
 
 1. Start Vault with preseeded secrets:
