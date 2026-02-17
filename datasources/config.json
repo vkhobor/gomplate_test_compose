@@ -1,0 +1,5 @@
+{
+  "app_env": "development",
+  "app_name": "vault-test-app",
+  "version": "1.0.0"
+}

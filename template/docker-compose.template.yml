@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    environment:
+      DB_PASSWORD: '{{ (ds "vault").password }}'
+      API_KEY: '{{ (ds "vault").api_key }}'
+      ENVIRONMENT: '{{ (ds "config").app_env }}'
+      APP_NAME: '{{ (ds "config").app_name }}'
+      VERSION: '{{ (ds "config").version }}'
+    ports:
+      - '8081:8080'
