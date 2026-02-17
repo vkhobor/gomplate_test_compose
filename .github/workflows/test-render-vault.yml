@@ -1,0 +1,55 @@
+name: Test render-vault
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test-render-vault:
+    runs-on: ubuntu-latest
+
+    services:
+      vault:
+        image: vault:latest
+        env:
+          VAULT_DEV_ROOT_TOKEN_ID: root
+          VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+        ports:
+          - 8200:8200
+        options: --cap-add=IPC_LOCK
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install gomplate
+        run: |
+          curl -o /tmp/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.11.5/gomplate_linux-amd64
+          chmod +x /tmp/gomplate
+          sudo mv /tmp/gomplate /usr/local/bin/gomplate
+
+      - name: Install Vault CLI
+        run: |
+          curl -o /tmp/vault.zip -sSL https://releases.hashicorp.com/vault/1.15.2/vault_1.15.2_linux_amd64.zip
+          unzip /tmp/vault.zip -d /tmp
+          sudo mv /tmp/vault /usr/local/bin/vault
+          sudo chmod +x /usr/local/bin/vault
+
+      - name: Setup Vault data
+        run: |
+          export VAULT_ADDR='http://127.0.0.1:8200'
+          export VAULT_TOKEN='root'
+          # Wait for vault to be ready
+          sleep 5
+          # Add test data to vault
+          vault kv put secret/app database_url="test://localhost" api_key="test-key"
+
+      - name: Test render-vault.sh
+        run: |
+          chmod +x render-vault.sh
+          ./render-vault.sh
+
+      - name: Verify output file exists
+        run: |
+          test -f docker-compose-vault.out.yml
